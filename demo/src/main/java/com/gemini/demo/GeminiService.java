@@ -32,13 +32,13 @@ import reactor.netty.transport.ProxyProvider;
 @Service
 @Slf4j
 public class GeminiService {
-	
+
 	@Autowired
 	private ObjectMapper objectMapper;
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
@@ -92,8 +92,8 @@ public class GeminiService {
 			return rateLimitErrorMessage;
 		}
 
-		int nonce = Integer.parseInt(String.valueOf(new Date().getTime()).substring(4));
-		Random random = new Random(); 
+		int nonce = Integer.parseInt(String.valueOf(new Date().getTime()).substring(3));
+		Random random = new Random();
     	GeminiNewBrokerorderRequest gmbr = new GeminiNewBrokerorderRequest(newBrokerUrl, nonce, "R485E04Q","Z4929ZDY",
     			"ethusd", String.valueOf(random.nextDouble()), 1.0, String.valueOf(Math.abs(random.nextInt())),"sell");
     	String requestBodyString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(gmbr);
@@ -137,7 +137,7 @@ public class GeminiService {
 		}
 	}
 
-	public boolean isRequestAllowed(String key) {
+	public synchronized boolean isRequestAllowed(String key) {
 	    Boolean hasKey = stringRedisTemplate.hasKey(key);
 	    if (hasKey) {
 	        Long value = hashOperations.increment(key, Constants.COUNT, -1l);
