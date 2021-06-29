@@ -1,0 +1,124 @@
+1.New Deposit Request:
+
+ {
+  "request" : "v1/notification/newDeposit",
+  "nonce" : 12345,
+  "refId" : "123",
+  "date" : 1624942051752,
+  "currency" : "BTC",
+  "account" : "destination-account",
+  "amoount" : "1500",
+  "sourceAddress" : "1BoatSLRHtKNngkdXEeobR76b53LETtpyT"
+}
+
+New Deposit Response
+
+{
+	"status": "success"
+}
+
+New Deposit Failure Response
+
+{
+ "status":"failure",
+ "error": "ER-1234"
+}
+--------------------------------------------------
+2.New Withdrawl Request:
+
+ {
+  "request" : "v1/notification/newWithdrawl",
+  "nonce" : 12345,
+  "refId" : "123",
+  "date" : 1624942051752,
+  "currency" : "BTC",
+  "account" : "my-account",
+  "amoount" : "1500",
+  "sourceAddress" : "1BoatSLRHtKNngkdXEeobR76b53LETtpyT"
+}
+
+New Withdrawl Response
+
+{
+	"status": "success"
+}
+
+New Withdrawl Failure Response
+
+{
+ "status":"failure",
+ "error": "ER-1234"
+}
+
+
+-------------------------------------------------------
+3.Cancel Message Request
+
+ {
+  "request" : "v1/notification/cancelMessage",
+  "nonce" : 12345,
+  "refId" : "123"
+}
+
+Cancel Message Success Response
+
+{
+	"status": "success"
+}
+
+
+Cancel Message Failure Response
+
+{
+ "status":"failure",
+ "error": "ER-1234"
+}
+
+
+----------------------------------------------------------
+4.get Message Statues Request
+
+ {
+  "request" : "v1/notification/status",
+  "nonce" : 12345,
+  "refId" : "123",
+  "timeOfReceipt" : 1478203017455,
+  "lastUpdate" : 1478203017457,
+  "account" : "my-account",
+  "updateIndex" : 10,
+  "status" : "status"
+}
+
+
+get Message Statues Response
+
+ {
+  "refId" : "123",
+  "messageType" : "deposit",
+  "date" : 1624942051752,
+  "timeOfReceipt" : 1478203017455,
+  "status" : "confirmed"
+  "lastUpdate" : 1478203017457,
+  "account" : "my-account",
+  "updateIndex" : 10,
+  "account" : "my-account",
+  "currency" : "BTC",
+  "amoount" : "1500",
+  "sourceAddress" : "1BoatSLRHtKNngkdXEeobR76b53LETtpyT",
+  "destinationAddress" : "2AoatSLRHtKNngkdXEeobR76b53LETtpyT",
+  "txnEid" : [ "txn-123", "txn-456" ]
+}
+--------------------------------------------------
+5. Unmatched Trasfers Response
+
+
+
+--------------------------------------------------
+6.Confirm Deposit Request
+
+ {
+  "request" : "v1/notification/confirmDeposit",
+  "nonce" : 12345,
+  "refId" : "123",
+  "txnEid" : [ "txn-123", "txn-456" ]
+}
